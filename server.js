@@ -6,9 +6,13 @@ const cors = require('cors')
 require('dotenv').config({ path: path.join(__dirname, '..', ".env") })
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-const PORT = 3400
+const PORT = process.env.PORT || 3400;
 app.use(express.json())
 app.use(cors(corsOptions))
+
+app.get("/hello", (req,res) => {
+  res.json("Hello")
+})
 
 app.post("/create-stripe-session", async(req,res) => {
 
