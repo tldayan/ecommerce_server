@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require("path")
-const corsOptions = require('../ecommerce/server/config/corsOptions')
+const corsOptions = require("./config/corsOptions")
 const cors = require('cors')
 require('dotenv').config({ path: path.join(__dirname, '..', ".env") })
 const Stripe = require('stripe');
