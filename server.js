@@ -10,10 +10,6 @@ const PORT = process.env.PORT || 3400;
 app.use(express.json())
 app.use(cors(corsOptions))
 
-app.get("/hello", (req,res) => {
-  res.json("Hello")
-})
-
 app.post("/create-stripe-session", async(req,res) => {
 
   const {products,currency} = req.body
