@@ -24,7 +24,7 @@ const lineItems = products.map((eachProduct) => {
             currency: currency,
             product_data: {
                 name: eachProduct.productName,
-                images: [`https://ecomxpress.vercel.app${productImage}`]
+                images: [`https://ecomxpress.vercel.app/${productImage}`]
             },
             unit_amount: Math.round(eachProduct.price * 100)
         },
