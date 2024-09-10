@@ -14,17 +14,24 @@ app.post("/create-stripe-session", async(req,res) => {
 
   const {products,currency} = req.body
 
-  const lineItems = products.map((eachProduct) => ({
-    price_data : {
-      currency : currency,
-      product_data : {
-        name : eachProduct.productName,
-        images : [`https://ecomxpress.vercel.app${eachProduct.productImage}`]
-      },
-      unit_amount : Math.round(eachProduct.price * 100)
-    },
-    quantity: eachProduct.productQuantity
-  }))
+const lineItems = products.map((eachProduct) => {
+    const productImage = eachProduct.productImage.startsWith('/') 
+      ? eachProduct.productImage 
+      : `/${eachProduct.productImage}`;
+    
+    return {
+        price_data: {
+            currency: currency,
+            product_data: {
+                name: eachProduct.productName,
+                images: [`https://ecomxpress.vercel.app${productImage}`]
+            },
+            unit_amount: Math.round(eachProduct.price * 100)
+        },
+        quantity: eachProduct.productQuantity
+    };
+});
+
 
 
   const session = await stripe.checkout.sessions.create({
