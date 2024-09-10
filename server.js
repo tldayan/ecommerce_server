@@ -5,7 +5,7 @@ const corsOptions = require("./config/corsOptions")
 const cors = require('cors')
 require('dotenv').config({ path: path.join(__dirname, '..', ".env") })
 const Stripe = require('stripe');
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = Stripe(`${process.env.STRIPE_SECRET_KEY}`);
 const PORT = process.env.PORT || 3400;
 app.use(express.json())
 app.use(cors(corsOptions))
